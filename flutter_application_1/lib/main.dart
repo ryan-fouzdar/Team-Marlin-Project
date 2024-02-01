@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-       home
-       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+       
     );
   }
 }
@@ -43,14 +42,15 @@ class MyApp extends StatelessWidget {
     Widget build(BuildContext context){
       return Scaffold(
         appBar: AppBar(
-          title: Text(Login to AggieBites!)
+          title: Text('Login to AggieBites!')
+        ),
         body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const TextField(
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: 'Email Address',
               ),
             ),
             const SizedBox(height: 16),
@@ -68,6 +68,7 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 }
