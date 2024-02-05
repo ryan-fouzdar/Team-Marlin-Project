@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-// import 'pages/homepage.dart';
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,8 +11,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginPage(title: 'Login Page'),
+      // home: const LoginPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
-
+// hello my name is aarav namaskar chut
