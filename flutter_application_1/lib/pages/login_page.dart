@@ -1,26 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-// import 'pages/homepage.dart';
-void main() {
-  runApp(const MyApp());
-}
+import 'homepage.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const LoginPage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
 class LoginPage extends StatelessWidget{
   const LoginPage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -48,7 +28,9 @@ class LoginPage extends StatelessWidget{
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              },
               child: const Text('Login'),
             ),
           ],
