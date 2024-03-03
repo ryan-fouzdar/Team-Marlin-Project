@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'mealSelection.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -108,9 +109,9 @@ class HomePage extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('Dashboard Item 2'),
+              title: const Text('Meal Selection'),
               onTap: () {
-                // Handle item 2 tap
+                Navigator.push(context, MaterialPageRoute(builder: (context) => mealSelection()));
               },
             ),
           ],
