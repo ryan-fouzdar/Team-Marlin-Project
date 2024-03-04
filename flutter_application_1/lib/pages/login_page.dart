@@ -10,11 +10,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Login to AggieBites!",
           style: TextStyle(color: Color.fromARGB(255, 2, 40, 81), fontFamily: 'Roboto'), // Set title color and font
         ),
-        backgroundColor: Color.fromARGB(255, 2, 40, 81), // Set background color
+        backgroundColor: const Color.fromARGB(255, 2, 40, 81), // Set background color
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -27,16 +27,16 @@ class LoginPage extends StatelessWidget {
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 2, 40, 81), // Set the background color here
         ),
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 64.0), // Increased space between top lines and email field
-              Text(
+              const SizedBox(height: 64.0), // Increased space between top lines and email field
+              const Text(
                 "Welcome to AggieBites",
                 style: TextStyle(
                   color: Colors.white,
@@ -46,8 +46,8 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16.0), // Add space between "Welcome to AggieBites" and subheading
-              Text(
+              const SizedBox(height: 16.0), // Add space between "Welcome to AggieBites" and subheading
+              const Text(
                 "Let's get started!",
                 style: TextStyle(
                   color: Colors.white,
@@ -56,13 +56,13 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 24.0), // Add space between subheading and text fields
+              const SizedBox(height: 24.0), // Add space between subheading and text fields
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Add border radius
                   color: Colors.white, // Set box color
                 ),
-                child: TextField(
+                child: const TextField(
                   style: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set font color and family
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -73,13 +73,13 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Add border radius
                   color: Colors.white, // Set box color
                 ),
-                child: TextField(
+                child: const TextField(
                   style: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set font color and family
                   obscureText: true,
                   decoration: InputDecoration(
@@ -91,30 +91,30 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24.0), // Add space between text fields and button
+              const SizedBox(height: 24.0), // Add space between text fields and button
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
+                    MaterialPageRoute(builder: (context) => const HomePage()), // Navigate to HomePage
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFD1A30F), // Set button color
-                  padding: EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
-                  textStyle: TextStyle(fontSize: 18, fontFamily: 'Roboto'), // Set button text style and font family
+                  primary: const Color(0xFFD1A30F), // Set button color
+                  padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
+                  textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'), // Set button text style and font family
                 ),
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
-              SizedBox(height: 16.0), // Add space between button and registration text
+              const SizedBox(height: 16.0), // Add space between button and registration text
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegistrationPage()), // Navigate to RegistrationPage
+                    MaterialPageRoute(builder: (context) => const RegistrationPage()), // Navigate to RegistrationPage
                   );
                 },
-                child: Text(
+                child: const Text(
                   "Not registered yet? Click here to register",
                   style: TextStyle(color: Colors.white, decoration: TextDecoration.underline, fontFamily: 'Roboto'), // Set font family
                 ),
