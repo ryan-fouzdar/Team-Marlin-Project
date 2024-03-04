@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 
 class MealSelection extends StatelessWidget {
   @override
+  const MealSelection({Key? key}) : super(key : key);
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MealPreferencesPage(),
+      home: _MealPreferencesPage(),
     );
   }
 }
 
-class MealPreferencesPage extends StatefulWidget {
+class _MealPreferencesPage extends StatefulWidget {
   @override
   _MealPreferencesPageState createState() => _MealPreferencesPageState();
 }
 
-class _MealPreferencesPageState extends State<MealPreferencesPage> {
+class _MealPreferencesPageState extends State<_MealPreferencesPage> {
   final List<bool> isSelected = List.generate(12, (_) => false);
   final List<String> labels = const [
     'Pizza',
