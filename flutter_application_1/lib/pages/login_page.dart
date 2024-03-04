@@ -10,11 +10,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Login to AggieBites!",
           style: TextStyle(color: Color.fromARGB(255, 2, 40, 81)), // Set title color
         ),
-        backgroundColor: Color.fromARGB(255, 2, 40, 81), // Set background color
+        backgroundColor: const Color.fromARGB(255, 2, 40, 81), // Set background color
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -27,14 +27,14 @@ class LoginPage extends StatelessWidget {
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 2, 40, 81), // Set the background color here
         ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 "Welcome to AggieBites",
                 style: TextStyle(
                   color: Colors.white,
@@ -43,8 +43,8 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 8), // Add space between "Welcome to AggieBites" and subheading
-              Text(
+              const SizedBox(height: 8), // Add space between "Welcome to AggieBites" and subheading
+              const Text(
                 "Let's get started!",
                 style: TextStyle(
                   color: Colors.white,
@@ -52,14 +52,14 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 24), // Add space between subheading and text fields
+              const SizedBox(height: 24), // Add space between subheading and text fields
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 32), // Add horizontal margin
+                margin: const EdgeInsets.symmetric(horizontal: 32), // Add horizontal margin
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Add border radius
                   color: Colors.white, // Set box color
                 ),
-                child: TextField(
+                child: const TextField(
                   style: TextStyle(color: Colors.black), // Set font color to black
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -70,14 +70,14 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 32), // Add horizontal margin
+                margin: const EdgeInsets.symmetric(horizontal: 32), // Add horizontal margin
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Add border radius
                   color: Colors.white, // Set box color
                 ),
-                child: TextField(
+                child: const TextField(
                   style: TextStyle(color: Colors.black), // Set font color to black
                   obscureText: true,
                   decoration: InputDecoration(
@@ -89,33 +89,33 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 32), // Add space between text fields and button
+              const SizedBox(height: 32), // Add space between text fields and button
               Container(
-                margin: EdgeInsets.only(bottom: 32), // Add bottom margin
+                margin: const EdgeInsets.only(bottom: 32), // Add bottom margin
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
+                      MaterialPageRoute(builder: (context) => const HomePage()), // Navigate to HomePage
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFD1A30F), // Set button color
-                    padding: EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
-                    textStyle: TextStyle(fontSize: 18), // Set button text style
+                    primary: const Color(0xFFD1A30F), // Set button color
+                    padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
+                    textStyle: const TextStyle(fontSize: 18), // Set button text style
                   ),
-                  child: Text('Login'),
+                  child: const Text('Login'),
                 ),
               ),
-              SizedBox(height: 16), // Add space between button and registration text
+              const SizedBox(height: 16), // Add space between button and registration text
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegistrationPage()), // Navigate to RegistrationPage
+                    MaterialPageRoute(builder: (context) => const RegistrationPage()), // Navigate to RegistrationPage
                   );
                 },
-                child: Text(
+                child: const Text(
                   "Not registered yet? Click here to register",
                   style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),
                 ),

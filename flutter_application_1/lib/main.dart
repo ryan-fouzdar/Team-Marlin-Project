@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
-// import 'pages/homepage.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const LoginPage(title: 'Flutter Demo Home Page'),
+      home: const LoginPage(title: "Login to AggieBites!"),
     );
   }
 }
