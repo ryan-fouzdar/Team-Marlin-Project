@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'homepage.dart'; // Import your homepage or wherever you navigate after successful login
 import 'registration_page.dart'; // Import your registration page
+import '../colors.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -12,9 +13,9 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Login to AggieBites!",
-          style: TextStyle(color: Color.fromARGB(255, 2, 40, 81), fontFamily: 'Roboto'), // Set title color and font
+          style: TextStyle(color: ucdavisBlue, fontFamily: 'Roboto'), // Set title color and font
         ),
-        backgroundColor: const Color.fromARGB(255, 2, 40, 81), // Set background color
+        backgroundColor: ucdavisBlue, // Set background color
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -28,7 +29,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 2, 40, 81), // Set the background color here
+          color: ucdavisBlue, // Set the background color here
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Center(
@@ -100,7 +101,7 @@ class LoginPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFD1A30F), // Set button color
+                  primary: ucdavisYellow, // Set button color
                   padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
                   textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'), // Set button text style and font family
                 ),

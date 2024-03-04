@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/aggiebites_infopage.dart';
 
 class RegistrationPage extends StatelessWidget {
   @override
@@ -81,7 +82,10 @@ class RegistrationPage extends StatelessWidget {
               const SizedBox(height: 24.0), // Add space between text fields and button
               ElevatedButton(
                 onPressed: () {
-                  // Handle registration logic
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()), // Navigate to HomePage
+                  ); // Navigate to HomePage
                 },
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFFD1A30F), // Set button color

@@ -1,34 +1,46 @@
 import 'package:flutter/material.dart';
+import '../colors.dart';
+import 'meal_selection.dart';
 
 class AggieBitesInfoPage extends StatelessWidget {
+  @override
+  const AggieBitesInfoPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Aggie Bites Info Page'),
-          backgroundColor: Colors.green,
+          title: const Text(
+            'Aggie Bites Info Page',
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Roboto',
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: ucdavisBlue,
         ),
-        body: InfoForm(),
+        body: _InfoForm(),
       ),
     );
   }
 }
 
-class InfoForm extends StatefulWidget {
+class _InfoForm extends StatefulWidget {
   @override
   _InfoFormState createState() => _InfoFormState();
 }
 
-class _InfoFormState extends State<InfoForm> {
+class _InfoFormState extends State<_InfoForm> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _ageController = TextEditingController();
-  TextEditingController _nutritionGoalsController = TextEditingController();
-  TextEditingController _favFoodController = TextEditingController();
-  TextEditingController _preferredMealsController = TextEditingController();
-  TextEditingController _howDidYouHearController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _dailyCalorieIntakeController =
+      TextEditingController(); // New controller
+  final TextEditingController _dailyProteinIntakeController =
+      TextEditingController(); // New controller
 
   @override
   Widget build(BuildContext context) {
@@ -73,48 +85,41 @@ class _InfoFormState extends State<InfoForm> {
               },
             ),
             TextFormField(
-              controller: _nutritionGoalsController,
+              controller: _dailyCalorieIntakeController, // New TextFormField
+              keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: 'Nutrition Goals',
+                labelText: 'Daily Calorie Intake Goal (kcal)',
               ),
             ),
             TextFormField(
-              controller: _favFoodController,
+              controller: _dailyProteinIntakeController, // New TextFormField
+              keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: 'Favorite Food',
-              ),
-            ),
-            TextFormField(
-              controller: _preferredMealsController,
-              decoration: const InputDecoration(
-                labelText: 'Preferred Meals',
-              ),
-            ),
-            TextFormField(
-              controller: _howDidYouHearController,
-              decoration: const InputDecoration(
-                labelText: 'How did you hear about us?',
+                labelText: 'Daily Protein Intake Goal (grams)',
               ),
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState?.validate() ?? false) {
-                  // Process the data
-                  // For now, print the data
-                  print('Name: ${_nameController.text}');
-                  print('Age: ${_ageController.text}');
-                  print('Nutrition Goals: ${_nutritionGoalsController.text}');
-                  print('Favorite Food: ${_favFoodController.text}');
-                  print('Preferred Meals: ${_preferredMealsController.text}');
-                  print('How did you hear about us?: ${_howDidYouHearController.text}');
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green,
-              ),
-              child: const Text('Submit')
-            ),
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    // Process the data
+                    // For now, print the data
+                    print('Name: ${_nameController.text}');
+                    print('Age: ${_ageController.text}');
+                    print(
+                        'Daily Calorie Intake Goal (kcal): ${_dailyCalorieIntakeController.text}');
+                    print(
+                        'Daily Protein Intake Goal (grams): ${_dailyProteinIntakeController.text}');
+                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MealSelection()), // Navigate to HomePage
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                ),
+                child: const Text('Submit')),
           ],
         ),
       ),
