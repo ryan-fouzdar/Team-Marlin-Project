@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/colors.dart';
+import './homepage.dart';
 
 class MealSelection extends StatelessWidget {
   @override
@@ -82,7 +84,7 @@ class _MealPreferencesPageState extends State<_MealPreferencesPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: isSelected[index]
-                          ? Border.all(color: Colors.blue, width: 2)
+                          ? Border.all(color: ucdavisBlue, width: 2)
                           : Border.all(color: Colors.grey, width: 1),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -105,6 +107,18 @@ class _MealPreferencesPageState extends State<_MealPreferencesPage> {
                   ),
                 );
               },
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                // Navigate to the homepage widget
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()), // Assuming HomePage is your homepage widget class
+                );
+              },
+              child: Text('Next'),
             ),
           ),
         ],

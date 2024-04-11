@@ -41,6 +41,10 @@ class _InfoFormState extends State<_InfoForm> {
       TextEditingController(); // New controller
   final TextEditingController _dailyProteinIntakeController =
       TextEditingController(); // New controller
+      final TextEditingController _dailyCarbIntakeController =
+      TextEditingController(); // New controller
+  final TextEditingController _dailyFatIntakeController =
+      TextEditingController(); // New controller
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +102,20 @@ class _InfoFormState extends State<_InfoForm> {
                 labelText: 'Daily Protein Intake Goal (grams)',
               ),
             ),
+            TextFormField(
+              controller: _dailyCarbIntakeController, // New TextFormField
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'Daily Carbohydrate Intake Goal (grams)',
+              ),
+            ),
+            TextFormField(
+              controller: _dailyFatIntakeController, // New TextFormField
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'Daily Fat Intake Goal (grams)',
+              ),
+            ),
             const SizedBox(height: 20.0),
             ElevatedButton(
                 onPressed: () {
@@ -110,6 +128,10 @@ class _InfoFormState extends State<_InfoForm> {
                         'Daily Calorie Intake Goal (kcal): ${_dailyCalorieIntakeController.text}');
                     print(
                         'Daily Protein Intake Goal (grams): ${_dailyProteinIntakeController.text}');
+                    print(
+                        'Daily Carb Intake Goal (kcal): ${_dailyCarbIntakeController.text}');
+                    print(
+                        'Daily Fat Intake Goal (grams): ${_dailyFatIntakeController.text}');    
                   }
                   Navigator.push(
                     context,
