@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'meal_selection.dart';
+import 'drawer.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -23,6 +24,7 @@ class DashboardState extends State<Dashboard> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
+        automaticallyImplyLeading: false,
       ),
       body: GridView.count(
         crossAxisCount: 2,
@@ -76,8 +78,8 @@ class DashboardState extends State<Dashboard> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -85,31 +87,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Dashboard Example'),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Dashboard Menu')
-            ),
-            ListTile(
-              title: const Text('Dashboard Item 1'),
-              onTap: () {
-                // Handle item 1 tap
-              },
-            ),
-            ListTile(
-              title: const Text('Meal Selection'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const MealSelection()));
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(),
       body: const Dashboard()
     );
   }

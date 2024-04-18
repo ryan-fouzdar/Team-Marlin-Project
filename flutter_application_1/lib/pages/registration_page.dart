@@ -88,7 +88,7 @@ class RegistrationPage extends StatelessWidget {
                   ); // Navigate to HomePage
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFD1A30F), // Set button color
+                  backgroundColor: const Color(0xFFD1A30F), // Set button color
                   padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
                   textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'), // Set button text style and font family
                 ),

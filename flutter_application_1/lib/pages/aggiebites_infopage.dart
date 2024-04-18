@@ -139,7 +139,7 @@ class _InfoFormState extends State<_InfoForm> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  backgroundColor: ucdavisBlue,
                 ),
                 child: const Text('Submit')),
           ],

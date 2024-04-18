@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart'; // Import your homepage or wherever you navigate after successful login
+import 'dashboard.dart'; // Import your homepage or wherever you navigate after successful login
 import 'registration_page.dart'; // Import your registration page
 import '../colors.dart';
 
@@ -26,6 +26,7 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ],
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -97,11 +98,11 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()), // Navigate to HomePage
+                    MaterialPageRoute(builder: (context) => const DashboardPage()), // Navigate to HomePage
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: ucdavisYellow, // Set button color
+                  backgroundColor: ucdavisYellow, // Set button color
                   padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
                   textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'), // Set button text style and font family
                 ),

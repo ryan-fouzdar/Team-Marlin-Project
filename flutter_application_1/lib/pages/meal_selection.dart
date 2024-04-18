@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/colors.dart';
-import './homepage.dart';
+import 'dashboard.dart';
 
 class MealSelection extends StatelessWidget {
   @override
@@ -115,10 +115,10 @@ class _MealPreferencesPageState extends State<_MealPreferencesPage> {
                 // Navigate to the homepage widget
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomePage()), // Assuming HomePage is your homepage widget class
+                  MaterialPageRoute(builder: (context) => const DashboardPage()), // Assuming HomePage is your homepage widget class
                 );
               },
-              child: Text('Next'),
+              child: const Text('Next'),
             ),
           ),
         ],
