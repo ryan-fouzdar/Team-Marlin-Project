@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../colors.dart';
+import '../../misc/colors.dart';
 import 'meal_selection.dart';
 
 class AggieBitesInfoPage extends StatelessWidget {

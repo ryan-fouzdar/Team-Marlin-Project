@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'meal_selection.dart';
+import '../profile_creation/meal_selection.dart';
 import 'drawer.dart';
 
 class Dashboard extends StatefulWidget {

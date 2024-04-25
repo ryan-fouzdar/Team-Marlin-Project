@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/colors.dart';
-import 'dashboard.dart';
+import 'package:flutter_application_1/misc/colors.dart';
+import '../application/dashboard.dart';
 
 class MealSelection extends StatelessWidget {
   @override

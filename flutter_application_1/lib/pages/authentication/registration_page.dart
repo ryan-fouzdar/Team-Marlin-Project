@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/aggiebites_infopage.dart';
+import 'package:flutter_application_1/pages/profile_creation/aggiebites_infopage.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override

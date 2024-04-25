@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dashboard.dart'; // Import your homepage or wherever you navigate after successful login
+import '../application/dashboard.dart'; // Import your homepage or wherever you navigate after successful login
 import 'registration_page.dart'; // Import your registration page
-import '../colors.dart';
+import '../../misc/colors.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
