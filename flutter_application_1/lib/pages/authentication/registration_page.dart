@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/firebase_auth/firebase_auth_services.dart';
 import 'package:flutter_application_1/pages/profile_creation/aggiebites_infopage.dart';
+import "package:firebase_auth/firebase_auth.dart";
+
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -10,100 +13,143 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  final FireBaseAuthService _auth = FireBaseAuthService();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "Registration",
-          style: TextStyle(color: Color.fromARGB(255, 2, 40, 81)), // Set title color
+          style: TextStyle(color: Color.fromARGB(255, 2, 40, 81)),
         ),
-        backgroundColor: const Color.fromARGB(255, 2, 40, 81), // Set background color
+        backgroundColor: const Color.fromARGB(255, 2, 40, 81),
       ),
       body: Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 2, 40, 81), // Set the background color here
+          color: Color.fromARGB(255, 2, 40, 81),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                "Let's get started!",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8), // Add space between sentences
-              const Text(
-                "Create an account to access your personal preferences!",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24.0), // Add space between sentences and text fields
-              const TextFieldContainer(
-                child: TextField(
-                  style: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set font color and family
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set hint text color and font family
-                    prefixIcon: Icon(Icons.email, color: Colors.black), // Add prefix icon
-                    border: InputBorder.none, // Remove border
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  "Let's get started!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              const SizedBox(height: 16.0), // Add space between email and password fields
-              const TextFieldContainer(
-                child: TextField(
-                  style: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set font color and family
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set hint text color and font family
-                    prefixIcon: Icon(Icons.lock, color: Colors.black), // Add prefix icon
-                    border: InputBorder.none, // Remove border
+                const SizedBox(height: 8),
+                const Text(
+                  "Create an account to access your personal preferences!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24.0),
+                TextFieldContainer(
+                  child: TextFormField(
+                    controller: _emailController,
+                    style: const TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                    decoration: const InputDecoration(
+                      hintText: 'Email',
+                      hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                      prefixIcon: Icon(Icons.email, color: Colors.black),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16.0), // Add space between password and confirm password fields
-              const TextFieldContainer(
-                child: TextField(
-                  style: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set font color and family
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: 'Confirm Password',
-                    hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'), // Set hint text color and font family
-                    prefixIcon: Icon(Icons.lock, color: Colors.black), // Add prefix icon
-                    border: InputBorder.none, // Remove border
+                const SizedBox(height: 16.0),
+                TextFieldContainer(
+                  child: TextFormField(
+                    controller: _passwordController,
+                    style: const TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                      prefixIcon: Icon(Icons.lock, color: Colors.black),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24.0), // Add space between text fields and button
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()), // Navigate to HomePage
-                  ); // Navigate to HomePage
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFD1A30F), // Set button color
-                  padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16), // Set button padding
-                  textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'), // Set button text style and font family
+                const SizedBox(height: 16.0),
+                TextFieldContainer(
+                  child: TextFormField(
+                    controller: _confirmPasswordController,
+                    style: const TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      hintText: 'Confirm Password',
+                      hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                      prefixIcon: Icon(Icons.lock, color: Colors.black),
+                      border: InputBorder.none,
+                    ),
+                  ),
                 ),
-                child: const Text('Register'),
-              ),
-            ],
+                const SizedBox(height: 24.0),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      // Process data if the form is valid
+                      signUp(context);
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFD1A30F),
+                    padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+                    textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'),
+                  ),
+                  child: const Text('Register'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void signUp(BuildContext context) async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("User successfully created!");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()),
+      );
+    } else {
+      print("Error occurred with user creation");
+    }
+    // try {
+    //   await _auth.signInWithEmailAndPassword(email, password);
+    // } on FirebaseAuthException catch (error) {
+    //   print(error.code);
+    // }
   }
 }
 
@@ -115,11 +161,13 @@ class TextFieldContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10), // Add border radius
-        color: Colors.white, // Set box color
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
       ),
       child: child,
     );
   }
 }
+
