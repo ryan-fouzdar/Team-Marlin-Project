@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/firebase_auth/firebase_auth_services.dart';
+import 'package:flutter_application_1/firebase/firebase_auth_services.dart';
 import 'package:flutter_application_1/pages/authentication/login_page.dart';
 import '../profile_creation/meal_selection.dart'; // Ensure this import points to the correct file path
 import 'dashboard.dart';

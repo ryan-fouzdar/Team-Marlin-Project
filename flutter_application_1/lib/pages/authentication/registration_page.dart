@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/firebase_auth/firebase_auth_services.dart';
+import 'package:flutter_application_1/firebase/firebase_auth_services.dart';
+import 'package:flutter_application_1/pages/authentication/login_page.dart';
 import 'package:flutter_application_1/pages/profile_creation/aggiebites_infopage.dart';
+import '../../misc/helpers.dart';
 import "package:firebase_auth/firebase_auth.dart";
 
 
@@ -16,9 +18,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final FireBaseAuthService _auth = FireBaseAuthService();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
@@ -110,9 +112,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(height: 24.0),
                 ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate() && (_passwordController.text == _confirmPasswordController.text)) {
                       // Process data if the form is valid
                       signUp(context);
+                    } else {
+                      showAlertDialog(context, "Error occurred with creating your account. Please try again.");
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -121,6 +125,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     textStyle: const TextStyle(fontSize: 18, fontFamily: 'Roboto'),
                   ),
                   child: const Text('Register'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")), // Navigate to RegistrationPage
+                    );
+                  },
+                  child: const Text(
+                    "Already have an account? Click here to log in.",
+                    style: TextStyle(color: Colors.white, decoration: TextDecoration.underline, fontFamily: 'Roboto'), // Set font family
+                  ),
                 ),
               ],
             ),
@@ -134,22 +150,31 @@ class _RegistrationPageState extends State<RegistrationPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    // User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-    if (user != null) {
+    // if (user != null) {
+    //   print("User successfully created!");
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()),
+    //   );
+    // } else {
+    //   print("Error occurred with user creation");
+    // }
+    try {
+      User? user = await _auth.signUpWithEmailAndPassword(email, password);
+      if (user == null) {
+        throw FirebaseAuthException(code: "null user");
+      }
       print("User successfully created!");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()),
       );
-    } else {
-      print("Error occurred with user creation");
+    } on FirebaseAuthException catch (error) {
+      print(error.code);
+      showAlertDialog(context, "Error occurred with signing up. Please try again.");
     }
-    // try {
-    //   await _auth.signInWithEmailAndPassword(email, password);
-    // } on FirebaseAuthException catch (error) {
-    //   print(error.code);
-    // }
   }
 }
 
