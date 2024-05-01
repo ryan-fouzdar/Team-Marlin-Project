@@ -144,9 +144,9 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     User? user = await _auth.signInWithEmailAndPassword(email, password);
-
+    print(user?.uid);
     if (user != null) {
-      print("User successfully created!");
+      print("User successfully signed in!");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const DashboardPage()),
