@@ -35,6 +35,7 @@ class MealPageState extends State<MealPage> {
               ),
               onSubmitted: (value) {
                 // Implement your search query logic here
+                
               },
             ),
           ),
@@ -54,7 +55,7 @@ class MealPageState extends State<MealPage> {
                   title: Text('Meal ${index + 1}'), // Placeholder title
                   subtitle: const Text('Meal description...'), // Placeholder subtitle
                   onTap: () {
-                    // Implement your navigation or action here
+                    showMealDetails(context, index);
                   },
                 );
               },
@@ -65,6 +66,49 @@ class MealPageState extends State<MealPage> {
       drawer: const AppDrawer(),
     );
   }
+
+  void showMealDetails(BuildContext context, int index) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Meal Details'), // Title of the dialog
+        content: SingleChildScrollView( // Use SingleChildScrollView to allow scrolling inside the dialog
+          child: ListBody(
+            children: <Widget>[
+              Text('Meal Name: Meal ${index + 1}'),
+              Text('Description: This is a delicious meal...'),
+              Text('Restaurant: Local Eatery'),
+              Text('Calories: 250 kcal'),
+              Text('Carbohydrates: 30g'),
+              Text('Protein: 10g'),
+              Text('Fats: 15g'),
+              // Add more nutritional info or other details as needed
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Add'),
+            onPressed: () {
+              // Implement what happens when the 'Add' button is clicked
+              print('Meal ${index + 1} added');
+              Navigator.of(context).pop(); // Closes the dialog
+            },
+          ),
+          TextButton(
+            child: Text('Close'),
+            onPressed: () {
+              Navigator.of(context).pop(); // Closes the dialog
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
 
   @override
   void dispose() {

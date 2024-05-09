@@ -20,7 +20,7 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Dashboard Menu', style: TextStyle(color: Colors.white)),
+            child: Text('Menu', style: TextStyle(color: Colors.white)),
           ),
           ListTile(
             title: const Text('Dashboard'),
