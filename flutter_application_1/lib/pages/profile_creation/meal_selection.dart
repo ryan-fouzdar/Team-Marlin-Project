@@ -4,12 +4,21 @@ import '../application/dashboard.dart';
 
 class MealSelection extends StatelessWidget {
   @override
-  const MealSelection({Key? key}) : super(key : key);
+  const MealSelection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: _MealPreferencesPage(),
+      theme: ThemeData(
+        primaryColor: const Color.fromARGB(255, 2, 40, 81),
+        textTheme: const TextTheme(
+          bodyText2: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Roboto',
+          ),
+        ),
+      ),
     );
   }
 }
@@ -53,75 +62,101 @@ class _MealPreferencesPageState extends State<_MealPreferencesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(title: const Text('Food Preferences')),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'We are sure you will find your favorites.',
-              style: TextStyle(fontSize: 20.0), // Adjust the font size if necessary
-            ),
+      appBar: AppBar(
+        title: const Text(
+          'Food Preferences',
+          style: TextStyle(
+            color: Color.fromARGB(255, 2, 40, 81),
+            fontFamily: 'Roboto',
           ),
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1.0,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+        ),
+        backgroundColor: const Color.fromARGB(255, 2, 40, 81),
+      ),
+      body: Container(
+        color: const Color.fromARGB(255, 2, 40, 81),
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'We are sure you will find your favorites.',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                  fontFamily: 'Roboto',
+                ),
               ),
-              itemCount: labels.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isSelected[index] = !isSelected[index];
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: isSelected[index]
-                          ? Border.all(color: ucdavisBlue, width: 2)
-                          : Border.all(color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          icons[index],
-                          color: isSelected[index] ? Colors.blue : null,
-                          size: 30.0,
-                        ),
-                        Text(
-                          labels[index],
-                          style: TextStyle(
-                            color: isSelected[index] ? Colors.blue : null,
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.all(10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.0,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: labels.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isSelected[index] = !isSelected[index];
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: isSelected[index]
+                            ? Border.all(color: const Color.fromARGB(255, 209, 163, 15), width: 2)
+                            : Border.all(color: Colors.grey, width: 1),
+                        borderRadius: BorderRadius.circular(8),
+                        color: isSelected[index] ? Colors.white : null,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            icons[index],
+                            color: isSelected[index] ? const Color.fromARGB(255, 2, 40, 81) : Colors.white,
+                            size: 30.0,
                           ),
-                        ),
-                      ],
+                          Text(
+                            labels[index],
+                            style: TextStyle(
+                              color: isSelected[index] ? const Color.fromARGB(255, 2, 40, 81) : Colors.white,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                  );
+                },
+              ),
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const DashboardPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFD1A30F),
+                  padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+                  textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Roboto',
                   ),
-                );
-              },
+                ),
+                child: const Text('Next'),
+              ),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                // Navigate to the homepage widget
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const DashboardPage()), // Assuming HomePage is your homepage widget class
-                );
-              },
-              child: const Text('Next'),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
