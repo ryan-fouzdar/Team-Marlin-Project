@@ -114,7 +114,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate() && (_passwordController.text == _confirmPasswordController.text)) {
                       // Process data if the form is valid
-                      signUp(context);
+                      // signUp(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()),
+                      );
                     } else {
                       showAlertDialog(context, "Error occurred with creating your account. Please try again.");
                     }
