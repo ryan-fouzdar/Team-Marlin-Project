@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../profile_creation/meal_selection.dart';
 import 'drawer.dart';
+import 'package:flutter_application_1/pages/authentication/login_page.dart'; // Import login page
 
 class Dashboard extends StatefulWidget {
   @override
@@ -31,6 +32,17 @@ class DashboardState extends State<Dashboard> {
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 2, 40, 81),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")),
+              );
+            },
+          ),
+        ],
         automaticallyImplyLeading: false,
       ),
       body: Container(
@@ -55,21 +67,21 @@ class DashboardState extends State<Dashboard> {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
-                      color: Colors.black, // Black font color
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     'Protein: $protein g',
-                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black),
                   ),
                   Text(
                     'Carbs: $carbs g',
-                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black),
                   ),
                   Text(
                     'Fats: $fats g',
-                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black),
                   ),
                 ],
               ),
@@ -88,17 +100,17 @@ class DashboardState extends State<Dashboard> {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
-                      color: Colors.black, // Black font color
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     'Target: $targetCalories kcal',
-                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black),
                   ),
                   Text(
                     'Consumed: $consumedCalories kcal',
-                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+                    style: const TextStyle(fontFamily: 'Roboto', color: Colors.black),
                   ),
                 ],
               ),
@@ -116,7 +128,7 @@ class DashboardState extends State<Dashboard> {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
-                      color: Colors.black, // Black font color
+                      color: Colors.black,
                     ),
                   ),
                   Expanded(
@@ -126,7 +138,7 @@ class DashboardState extends State<Dashboard> {
                         return ListTile(
                           title: Text(
                             meals[index],
-                            style: const TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+                            style: const TextStyle(fontFamily: 'Roboto', color: Colors.black),
                           ),
                         );
                       },
@@ -147,7 +159,7 @@ class DashboardState extends State<Dashboard> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Roboto',
-                    color: Colors.black, // Black font color
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -207,7 +219,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text(
               'Home',
-              style: TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
             ),
             onTap: () {
               // Navigate to home
@@ -217,7 +229,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.settings),
             title: const Text(
               'Settings',
-              style: TextStyle(fontFamily: 'Roboto', color: Colors.black), // Black font color
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
             ),
             onTap: () {
               // Navigate to settings
@@ -228,6 +240,7 @@ class AppDrawer extends StatelessWidget {
     );
   }
 }
+
 
 
 // import 'package:flutter/material.dart';
