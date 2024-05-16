@@ -66,6 +66,17 @@ flutter:
   assets:
      - assets/images/ucdavis_logo_gold.png
      - assets/dataset/gdsc_dataset.csv
+     - assets/icons/appetizer-icon.png
+     - assets/icons/baked-icon.png
+     - assets/icons/beverage-icon.png
+     - assets/icons/burger-icon.png
+     - assets/icons/dessert-icon.png
+     - assets/icons/entree-icon.png
+     - assets/icons/soup-icon.png
+     - assets/icons/pizza-icon.png
+     - assets/icons/potato-icon.png
+     - assets/icons/salad-icon.png
+     - assets/icons/sandwich-icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

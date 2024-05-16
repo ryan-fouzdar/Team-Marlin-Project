@@ -31,33 +31,32 @@ class _MealPreferencesPage extends StatefulWidget {
 class _MealPreferencesPageState extends State<_MealPreferencesPage> {
   final List<bool> isSelected = List.generate(12, (_) => false);
   final List<String> labels = const [
-    'Pizza',
-    'Seafood',
-    'Vegan',
-    'Meat',
-    'Ramen',
+    'Soup',
+    'Salads',
+    'Sandwiches',
     'Burgers',
-    'Cafe',
-    'Drinks',
-    'Breakfast',
-    'Lunch',
-    'Dinner',
-    'Dessert',
-  ];
-  final List<IconData> icons = const [
-    Icons.local_pizza,
-    Icons.set_meal,
-    Icons.eco,
-    Icons.restaurant,
-    Icons.ramen_dining,
-    Icons.lunch_dining,
-    Icons.local_cafe,
-    Icons.local_drink,
-    Icons.free_breakfast,
-    Icons.lunch_dining,
-    Icons.dinner_dining,
-    Icons.cake,
-  ];
+    'Entrees',
+    'Appetizers/Sides',
+    'Fried Potatoes',
+    'Desserts',
+    'Beverages',
+    'Baked Goods',
+    'Pizza'
+];
+
+final List<String> icons = const [
+    'assets/icons/soup-icon.png',
+    'assets/icons/salad-icon.png',
+    'assets/icons/sandwich-icon.png',
+    'assets/icons/burger-icon.png',
+    'assets/icons/entree-icon.png',
+    'assets/icons/appetizer-icon.png',
+    'assets/icons/potato-icon.png',
+    'assets/icons/dessert-icon.png',
+    'assets/icons/beverage-icon.png',
+    'assets/icons/baked-icon.png',
+    'assets/icons/pizza-icon.png'
+];
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +116,12 @@ class _MealPreferencesPageState extends State<_MealPreferencesPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            icons[index],
-                            color: isSelected[index] ? const Color.fromARGB(255, 2, 40, 81) : Colors.white,
-                            size: 30.0,
+                          Image.asset(
+                            icons[index], // Use image asset path from the list
+                            color: isSelected[index] ? const Color.fromARGB(255, 2, 40, 81) : Colors.white, // Apply color filter if needed
+                            width: 30.0, // Set width for consistency
+                            height: 30.0, // Set height for consistency
+                            fit: BoxFit.cover, // Ensures the image covers the box, adjust as needed
                           ),
                           Text(
                             labels[index],
