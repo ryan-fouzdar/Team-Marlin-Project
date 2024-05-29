@@ -2,49 +2,59 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 
 class FirestoreService {
-  // Singleton pattern
-  static final FirestoreService _instance = FirestoreService._internal();
-  factory FirestoreService() => _instance;
+  // Private constructor
   FirestoreService._internal();
 
+  // Singleton instance
+  static final FirestoreService _instance = FirestoreService._internal();
+
+  // Factory constructor
+  factory FirestoreService() => _instance;
+
+  // Firestore instance
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // Future<String> getMenuItems() async {
-  //   QuerySnapshot querySnapshot = await _db.collection('menu_items').get();
+  // Public getter to access the Firestore instance
+  FirebaseFirestore get db => _db;
 
-  //   List<Map<String, dynamic>> menuItemsList = [];
-  //   querySnapshot.docs.forEach((document) {
-  //     List<dynamic> meals = document.data()['meals'];
-  //     meals.forEach((meal) {
-  //       // Here you can access individual meal data and add it to a list
-  //       menuItemsList.add({
-  //         'food_category': meal['food_category'],
-  //         'name': meal['name'],
-  //         'description': meal['description'],
-  //         'calories': meal['calories'],
-  //         'total_fat': meal['total_fat'],
-  //         'protein': meal['protein'],
+  // Example method to add a user document
+  Future<void> addUser(String uid, Map<String, dynamic> userData) async {
+    try {
+      await _db.collection('users').doc(uid).set(userData);
+      print('User added successfully');
+    } catch (e) {
+      print('Error adding user: $e');
+    }
+  }
 
-          
-  //       });
-  //     });
-  //   });
-
-  //   return jsonEncode(menuItemsList);
+  // // Example method to get a user document
+  // Future<DocumentSnapshot> getUser(String uid) async {
+  //   try {
+  //     DocumentSnapshot userDoc = await _db.collection('users').doc(uid).get();
+  //     return userDoc;
+  //   } catch (e) {
+  //     print('Error getting user: $e');
+  //     rethrow;
+  //   }
   // }
 
-  // Future<String> getRestaurantsAsJson() async {
-  //   QuerySnapshot querySnapshot = await _db.collection('restaurants').get();
+  // // Example method to update a user document
+  // Future<void> updateUser(String uid, Map<String, dynamic> userData) async {
+  //   try {
+  //     await _db.collection('users').doc(uid).update(userData);
+  //     print('User updated successfully');
+  //   } catch (e) {
+  //     print('Error updating user: $e');
+  //   }
+  // }
 
-  //   List<Map<String, dynamic>> restaurantsList = [];
-  //   querySnapshot.docs.forEach((document) {
-  //     // Convert each document data to a map
-  //     Map<String, dynamic> restaurantData = document.data();
-  //     restaurantData['id'] = document.id; // Include document ID in the data
-  //     restaurantsList.add(restaurantData);
-  //   });
-
-  //   // Convert the list of maps to a JSON string
-  //   return jsonEncode(restaurantsList);
+  // // Example method to delete a user document
+  // Future<void> deleteUser(String uid) async {
+  //   try {
+  //     await _db.collection('users').doc(uid).delete();
+  //     print('User deleted successfully');
+  //   } catch (e) {
+  //     print('Error deleting user: $e');
+  //   }
   // }
 }

@@ -6495,7 +6495,7 @@ Beverages,Denny's,Coca-Cola Zero Sugar,"Coca-Cola Zero Sugar, Drinks & Shakes",0
 Beverages,Denny's,Mello Yello,"Mello Yello, Drinks & Shakes",190,0,0,0,0,55,49,0,49,0
 Beverages,Denny's,Jr. Mango Smoothie,"Jr. Mango Smoothie, Kids' Drinks",190,0,0,0,0,50,50,0,46,2
 Beverages,Denny's,Jr. Strawberry Banana Smoothie,"Jr. Strawberry Banana Smoothie, Kids' Drinks",190,0,0,0,0,50,48,2,37,2
-Beverages,Denny's,Soft Drinks,"Soft Drinks, Kids' Drinks",120,0,0,0,0,50,33,0,33,0
+Beverages,Denny's,Soft Drinks,"Soft Drinks, Kids' Drinks",0-120,0,0,0,0,25-50,0-33,0,0-33,0
 Entrees,Denny's,Berry Vanilla Two Crepe Breakfast w/ hash browns (add egg & meat choices),"Berry Vanilla Two Crepe Breakfast w/ hash browns (add egg & meat choices), Crepes",710,32,11,0,30,880,96,5,45,9
 Entrees,Denny's,Mile High Denver Omelette w/ hash browns & white toast,"Mile High Denver Omelette w/ hash browns & white toast, Omelettes",1090,67,21,1,800,3130,69,2,12,51
 Toppings & Ingredients,Denny's,Fresh Avocado,"Fresh Avocado, Build Your Own Omelette",90,8,1,0,0,0,5,4,0,1
@@ -21448,7 +21448,7 @@ Sandwiches,Whataburger,#22 Jalapeño Cheddar Biscuit Sandwich with Sausage,"#22 
 Beverages,Whataburger,Medium Coke Zero(32 fl oz),"Medium Coke Zero(32 fl oz), Soft Drinks",0,0,0,0,0,105,0,0,0,0
 Toppings & Ingredients,Whataburger,Monterey Jack Cheese,"Monterey Jack Cheese, Add Ons",60,5,3,0,15,310,0,0,0,3
 Toppings & Ingredients,Whataburger,Bacon (per slice),"Bacon (per slice), Add-Ons",25,1.5,0.5,0,5,85,0,0,0,2
-Toppings & Ingredients,Whataburger,Jalapeños (whole or sliced – about 5-8 slices),"Jalapeños (whole or sliced – about 5-8 slices), Add-Ons",0,0,0,0,0,140,1,0,0,0
+Toppings & Ingredients,Whataburger,Jalapeños (whole or sliced – about 5-8 slices),"Jalapeños (whole or sliced – about 5-8 slices), Add-Ons",0,0,0,0,0,90-140,1,0,0,0
 Toppings & Ingredients,Whataburger,Avocado,"Avocado, Add-Ons",90,9,1.5,0,0,20,4,3,0,1
 Toppings & Ingredients,Whataburger,Grilled Peppers and Onions,"Grilled Peppers and Onions, Add-Ons",25,1.5,0,0,0,130,3,1,1,0
 Toppings & Ingredients,Whataburger,Buttermilk Ranch Dressing,"Buttermilk Ranch Dressing, Dipping Sauces & Dressings",240,25,4.5,0,20,500,3,0,2,1

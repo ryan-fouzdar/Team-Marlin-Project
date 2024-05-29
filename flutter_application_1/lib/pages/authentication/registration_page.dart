@@ -154,17 +154,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    // User? user = await _auth.signUpWithEmailAndPassword(email, password);
-
-    // if (user != null) {
-    //   print("User successfully created!");
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => const AggieBitesInfoPage()),
-    //   );
-    // } else {
-    //   print("Error occurred with user creation");
-    // }
     try {
       User? user = await _auth.signUpWithEmailAndPassword(email, password);
       if (user == null) {
