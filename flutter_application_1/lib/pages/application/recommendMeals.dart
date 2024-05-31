@@ -73,12 +73,13 @@ double euclideanDistanceMetric(User user, Meal meal) {
   double weightProtein = 3.0;
   double weightFats = 1.5;
   double weightCarbs = 2.0;
-  return sqrt(
+  double metric = sqrt(
     pow(weightCalories * ((user.calorieGoal / (user.totalMeals - user.mealsEaten)) - meal.calories), 2) +
     pow(weightProtein * ((user.proteinGoal / (user.totalMeals - user.mealsEaten)) - meal.protein), 2) +
     pow(weightFats * ((user.fatGoal / (user.totalMeals - user.mealsEaten)) - meal.totalFat), 2) +
     pow(weightCarbs * ((user.carbGoal / (user.totalMeals - user.mealsEaten)) - meal.carbohydrates), 2)
   );
+  return metric;
 }
 
 double safeParseDouble(dynamic value) {

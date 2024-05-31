@@ -20,7 +20,7 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 2, 40, 81),
+              color: Color.fromARGB(255, 4, 69, 138),
             ),
             child: Text(
               'Menu',
@@ -40,16 +40,6 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pop(context); // Close the drawer before navigating
               Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage(uid: uid)));
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text(
-              'Settings',
-              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
-            ),
-            onTap: () {
-              // Navigate to settings
             },
           ),
           ListTile(
