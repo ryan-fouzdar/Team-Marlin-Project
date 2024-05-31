@@ -39,7 +39,13 @@ class Meal {
   final String itemDescription;
   final double calories;
   final double totalFat;
+  final double saturatedFat;
+  final double transFat;
+  final double cholesterol;
+  final double sodium;
   final double carbohydrates;
+  final double dietaryFiber;
+  final double sugar;
   final double protein;
   double distance; // This will be used for sorting
 
@@ -50,7 +56,13 @@ class Meal {
     required this.itemDescription,
     required this.calories,
     required this.totalFat,
+    required this.saturatedFat,
+    required this.transFat,
+    required this.cholesterol,
+    required this.sodium,
     required this.carbohydrates,
+    required this.dietaryFiber,
+    required this.sugar,
     required this.protein,
     this.distance = 0.0,
   });
@@ -96,7 +108,13 @@ Future<List<Meal>> loadMeals(String path) async {
       itemDescription: row[3].toString(),
       calories: safeParseDouble(row[4]),
       totalFat: safeParseDouble(row[5]),
+      saturatedFat: safeParseDouble(row[6]),
+      transFat: safeParseDouble(row[7]),
+      cholesterol: safeParseDouble(row[8]),
+      sodium: safeParseDouble(row[9]),
       carbohydrates: safeParseDouble(row[10]),
+      dietaryFiber: safeParseDouble(row[11]),
+      sugar: safeParseDouble(row[12]),
       protein: safeParseDouble(row[13]),
     );
   }).toList();

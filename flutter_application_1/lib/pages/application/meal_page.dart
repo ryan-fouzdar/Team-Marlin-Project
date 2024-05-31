@@ -156,13 +156,18 @@ class MealPageState extends State<MealPage> {
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('Meal Name: ${meal.itemName}', style: const TextStyle(fontFamily: 'Roboto')),
+              // Text('Meal Name: ${meal.itemName}', style: const TextStyle(fontFamily: 'Roboto')),
               Text('Description: ${meal.itemDescription}', style: const TextStyle(fontFamily: 'Roboto')),
               Text('Restaurant: ${meal.restaurant}', style: const TextStyle(fontFamily: 'Roboto')),
-              Text('Calories: ${meal.calories}', style: const TextStyle(fontFamily: 'Roboto')),
-              Text('Carbohydrates: ${meal.carbohydrates}', style: const TextStyle(fontFamily: 'Roboto')),
-              Text('Protein: ${meal.protein}', style: const TextStyle(fontFamily: 'Roboto')),
-              Text('Fats: ${meal.totalFat}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Calories: ${meal.calories} g', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Carbohydrates: ${meal.carbohydrates} g', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Protein: ${meal.protein} g', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Saturated Fat: ${meal.saturatedFat} g', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Trans Fat: ${meal.transFat} g', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Cholesterol: ${meal.cholesterol} mg', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Sodium: ${meal.sodium} mg', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Dietary Fiber: ${meal.totalFat} g', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Sugar: ${meal.totalFat} g', style: const TextStyle(fontFamily: 'Roboto')),
             ],
           ),
         ),
