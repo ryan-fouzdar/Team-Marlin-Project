@@ -15,34 +15,55 @@ class MealPage extends StatefulWidget {
 class MealPageState extends State<MealPage> {
   final TextEditingController _searchController = TextEditingController();
   List<Meal> _meals = [];
+  List<Meal> _recommendedMeals = [];
   bool _isLoading = true;
+  User? _curUser;
 
   @override
   void initState() {
     super.initState();
     _loadMeals();
+    _searchController.addListener(_filterMeals);
   }
 
   Future<void> _loadMeals() async {
     try {
       // Load user data from Firestore
       DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(widget.uid).get();
-      User curUser = User.fromFirestore(userDoc);
+      _curUser = User.fromFirestore(userDoc);
 
       // Load meals from CSV
       List<Meal> meals = await loadMeals('/Users/nehem/development/Team-Marlin-Project/flutter_application_1/assets/dataset/gdsc_dataset.csv');
 
       // Get recommended meals
-      List<Meal> sortedMeals = recommendMeals(curUser, meals, 10);
+      List<Meal> sortedMeals = recommendMeals(_curUser!, meals, 10);
 
       setState(() {
-        _meals = sortedMeals;
+        _meals = meals;
+        _recommendedMeals = sortedMeals;
         _isLoading = false;
       });
     } catch (e) {
       print('Error loading meals: $e');
       setState(() {
         _isLoading = false;
+      });
+    }
+  }
+
+  void _filterMeals() {
+    if (_curUser == null) return;
+
+    final query = _searchController.text.toLowerCase();
+    if (query.isEmpty) {
+      setState(() {
+        _recommendedMeals = recommendMeals(_curUser!, _meals, 10);
+      });
+    } else {
+      setState(() {
+        _recommendedMeals = _meals.where((meal) {
+          return meal.itemName.toLowerCase().contains(query) || meal.restaurant.toLowerCase().contains(query);
+        }).toList();
       });
     }
   }
@@ -70,14 +91,14 @@ class MealPageState extends State<MealPage> {
               child: TextField(
                 controller: _searchController,
                 style: const TextStyle(color: Colors.black, fontFamily: 'Roboto'),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Search for meals...',
-                  hintStyle: const TextStyle(color: Colors.black, fontFamily: 'Roboto'),
-                  prefixIcon: const Icon(Icons.search, color: Colors.black),
+                  hintStyle: TextStyle(color: Colors.black, fontFamily: 'Roboto'),
+                  prefixIcon: Icon(Icons.search, color: Colors.black),
                   border: InputBorder.none,
                 ),
                 onSubmitted: (value) {
-                  // Implement your search query logic here
+                  _filterMeals();
                 },
               ),
             ),
@@ -97,20 +118,20 @@ class MealPageState extends State<MealPage> {
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(
-                      itemCount: _meals.length,
+                      itemCount: _recommendedMeals.length,
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: const Icon(Icons.fastfood, color: Colors.white),
                           title: Text(
-                            _meals[index].itemName,
+                            _recommendedMeals[index].itemName,
                             style: const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
                           ),
                           subtitle: Text(
-                            _meals[index].itemDescription,
+                            _recommendedMeals[index].itemDescription,
                             style: const TextStyle(color: Colors.white70, fontFamily: 'Roboto'),
                           ),
                           onTap: () {
-                            showMealDetails(context, _meals[index]);
+                            showMealDetails(context, _recommendedMeals[index]);
                           },
                         );
                       },

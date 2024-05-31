@@ -20,31 +20,60 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Color.fromARGB(255, 2, 40, 81),
             ),
-            child: Text('Menu', style: TextStyle(color: Colors.white)),
+            child: Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontFamily: 'Roboto',
+              ),
+            ),
           ),
           ListTile(
-            title: const Text('Dashboard'),
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'Home',
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
+            ),
             onTap: () {
               Navigator.pop(context); // Close the drawer before navigating
               Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage(uid: uid)));
             },
           ),
           ListTile(
-            title: const Text('Meals'),
+            leading: const Icon(Icons.settings),
+            title: const Text(
+              'Settings',
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
+            ),
             onTap: () {
+              // Navigate to settings
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.fastfood),
+            title: const Text(
+              'Meal Selection',
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
+            ),
+            onTap: () { 
               Navigator.pop(context); // Close the drawer before navigating
               Navigator.push(context, MaterialPageRoute(builder: (context) => MealPage(uid: uid)));
             },
           ),
           ListTile(
-            title: const Text('Log Out'),
+            leading: const Icon(Icons.logout),
+            title: const Text(
+              'Log Out',
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
+            ),
             onTap: () {
-              // Handle item 1 tap
               FirebaseAuth.instance.signOut();
               Navigator.pop(context); // Close the drawer
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")));
+            
             },
           ),
         ],
