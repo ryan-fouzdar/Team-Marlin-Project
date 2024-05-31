@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/misc/colors.dart';
-import '../application/dashboard.dart';
+import 'package:flutter_application_1/pages/application/dashboard.dart';
+import 'package:flutter_application_1/Firebase/FirestoreService.dart';
 
 class MealSelection extends StatelessWidget {
-  @override
-  const MealSelection({Key? key}) : super(key: key);
+  final String uid;
+  
+  const MealSelection({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: _MealPreferencesPage(),
+      home: MealPreferencesPage(uid: uid),
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 2, 40, 81),
         textTheme: const TextTheme(
@@ -23,13 +24,17 @@ class MealSelection extends StatelessWidget {
   }
 }
 
-class _MealPreferencesPage extends StatefulWidget {
+class MealPreferencesPage extends StatefulWidget {
+  final String uid;
+
+  const MealPreferencesPage({Key? key, required this.uid}) : super(key: key);
+
   @override
-  _MealPreferencesPageState createState() => _MealPreferencesPageState();
+  MealPreferencesPageState createState() => MealPreferencesPageState();
 }
 
-class _MealPreferencesPageState extends State<_MealPreferencesPage> {
-  final List<bool> isSelected = List.generate(12, (_) => false);
+class MealPreferencesPageState extends State<MealPreferencesPage> {
+  final List<bool> isSelected = List.generate(11, (_) => false);
   final List<String> labels = const [
     'Soup',
     'Salads',
@@ -42,9 +47,9 @@ class _MealPreferencesPageState extends State<_MealPreferencesPage> {
     'Beverages',
     'Baked Goods',
     'Pizza'
-];
+  ];
 
-final List<String> icons = const [
+  final List<String> icons = const [
     'assets/icons/soup-icon.png',
     'assets/icons/salad-icon.png',
     'assets/icons/sandwich-icon.png',
@@ -56,7 +61,7 @@ final List<String> icons = const [
     'assets/icons/beverage-icon.png',
     'assets/icons/baked-icon.png',
     'assets/icons/pizza-icon.png'
-];
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -139,10 +144,23 @@ final List<String> icons = const [
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  // Collect the selected preferences
+                  List<String> preferences = [];
+                  for (int i = 0; i < isSelected.length; i++) {
+                    if (isSelected[i]) {
+                      preferences.add(labels[i]);
+                    }
+                  }
+
+                  // Update Firestore with the user's preferences
+                  await FirestoreService().db.collection('users').doc(widget.uid).update({
+                    'preferences': preferences,
+                  });
+
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const DashboardPage()),
+                    MaterialPageRoute(builder: (context) => DashboardPage(uid: widget.uid)),
                   );
                 },
                 style: ElevatedButton.styleFrom(

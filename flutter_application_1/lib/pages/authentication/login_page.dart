@@ -22,6 +22,13 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -149,11 +156,10 @@ class _LoginPageState extends State<LoginPage> {
       print("User successfully signed in!");
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardPage()),
+        MaterialPageRoute(builder: (context) => DashboardPage(uid: user.uid)), // Pass the uid to DashboardPage
       );
     } else {
       showAlertDialog(context, "Error occurred with signing in. Please try again.");
-
     }
   }
 }

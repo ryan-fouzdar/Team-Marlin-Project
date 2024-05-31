@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:csv/csv.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
   final int calorieGoal;
@@ -18,6 +19,17 @@ class User {
     required this.carbGoal,
     required this.mealsEaten,
   }) : totalMeals = 3;
+
+  factory User.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data() as Map<String, dynamic>;
+    return User(
+      calorieGoal: data['calorieGoal'] ?? 0,
+      proteinGoal: data['proteinGoal'] ?? 0,
+      fatGoal: data['fatGoal'] ?? 0,
+      carbGoal: data['carbGoal'] ?? 0,
+      mealsEaten: 0, // Initialize mealsEaten to 0 for now
+    );
+  }
 }
 
 class Meal {
@@ -105,8 +117,14 @@ List<Meal> recommendMeals(User user, List<Meal> meals, int numRecommendations) {
   return meals.take(numRecommendations).toList();
 }
 
-void main() async {
-  User curUser = User(calorieGoal: 2280, proteinGoal: 190, fatGoal: 80, carbGoal: 200, mealsEaten: 0);
+Future<void> main() async {
+  // Example uid for testing
+  String uid = 'exampleUid';
+
+  // Load user data from Firestore
+  DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+  User curUser = User.fromFirestore(userDoc);
+
   int numRecommendations = 3;
 
   // Load meals from CSV

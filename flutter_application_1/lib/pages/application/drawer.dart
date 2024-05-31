@@ -8,7 +8,9 @@ import '../authentication/login_page.dart';
 import "package:firebase_auth/firebase_auth.dart";
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  final String uid;
+
+  const AppDrawer({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,14 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Dashboard'),
             onTap: () {
               Navigator.pop(context); // Close the drawer before navigating
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage(uid: uid)));
             },
           ),
           ListTile(
             title: const Text('Meals'),
             onTap: () {
               Navigator.pop(context); // Close the drawer before navigating
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const MealPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MealPage(uid: uid)));
             },
           ),
           ListTile(
@@ -42,7 +44,7 @@ class AppDrawer extends StatelessWidget {
               // Handle item 1 tap
               FirebaseAuth.instance.signOut();
               Navigator.pop(context); // Close the drawer
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")));
             },
           ),
         ],
