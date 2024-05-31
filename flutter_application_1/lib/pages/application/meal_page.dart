@@ -145,47 +145,106 @@ class MealPageState extends State<MealPage> {
   }
 
   void showMealDetails(BuildContext context, Meal meal) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text(
-            'Meal Details',
-            style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold),
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Meal Details',
+          style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold),
+        ),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('Meal Name: ${meal.itemName}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Description: ${meal.itemDescription}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Restaurant: ${meal.restaurant}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Calories: ${meal.calories}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Carbohydrates: ${meal.carbohydrates}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Protein: ${meal.protein}', style: const TextStyle(fontFamily: 'Roboto')),
+              Text('Fats: ${meal.totalFat}', style: const TextStyle(fontFamily: 'Roboto')),
+            ],
           ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Meal Name: ${meal.itemName}', style: const TextStyle(fontFamily: 'Roboto')),
-                Text('Description: ${meal.itemDescription}', style: const TextStyle(fontFamily: 'Roboto')),
-                Text('Restaurant: ${meal.restaurant}', style: const TextStyle(fontFamily: 'Roboto')),
-                Text('Calories: ${meal.calories}', style: const TextStyle(fontFamily: 'Roboto')),
-                Text('Carbohydrates: ${meal.carbohydrates}', style: const TextStyle(fontFamily: 'Roboto')),
-                Text('Protein: ${meal.protein}', style: const TextStyle(fontFamily: 'Roboto')),
-                Text('Fats: ${meal.totalFat}', style: const TextStyle(fontFamily: 'Roboto')),
-              ],
-            ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Add', style: TextStyle(fontFamily: 'Roboto')),
+            onPressed: () {
+              Navigator.of(context).pop(); // Closes the dialog
+              showAddMealOptions(context, meal); // Show add meal options
+            },
           ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Add', style: TextStyle(fontFamily: 'Roboto')),
-              onPressed: () {
-                // Implement what happens when the 'Add' button is clicked
-                print('Meal ${meal.itemName} added');
-                Navigator.of(context).pop(); // Closes the dialog
-              },
-            ),
-            TextButton(
-              child: const Text('Close', style: TextStyle(fontFamily: 'Roboto')),
-              onPressed: () {
-                Navigator.of(context).pop(); // Closes the dialog
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+          TextButton(
+            child: const Text('Close', style: TextStyle(fontFamily: 'Roboto')),
+            onPressed: () {
+              Navigator.of(context).pop(); // Closes the dialog
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showAddMealOptions(BuildContext context, Meal meal) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Add Meal to',
+          style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold),
+        ),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              ListTile(
+                title: const Text('Breakfast', style: TextStyle(fontFamily: 'Roboto')),
+                onTap: () {
+                  // Handle adding meal to breakfast
+                  Navigator.of(context).pop(); // Closes the dialog
+                  showSnackbar(context, 'Meal ${meal.itemName} added to Breakfast');
+                },
+              ),
+              ListTile(
+                title: const Text('Lunch', style: TextStyle(fontFamily: 'Roboto')),
+                onTap: () {
+                  // Handle adding meal to lunch
+                  Navigator.of(context).pop(); // Closes the dialog
+                  showSnackbar(context, 'Meal ${meal.itemName} added to Lunch');
+                },
+              ),
+              ListTile(
+                title: const Text('Dinner', style: TextStyle(fontFamily: 'Roboto')),
+                onTap: () {
+                  // Handle adding meal to dinner
+                  Navigator.of(context).pop(); // Closes the dialog
+                  showSnackbar(context, 'Meal ${meal.itemName} added to Dinner');
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Close', style: TextStyle(fontFamily: 'Roboto')),
+            onPressed: () {
+              Navigator.of(context).pop(); // Closes the dialog
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showSnackbar(BuildContext context, String message) {
+  final snackBar = SnackBar(
+    content: Text(message, style: const TextStyle(fontFamily: 'Roboto')),
+    duration: const Duration(seconds: 2),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
 
   @override
   void dispose() {
