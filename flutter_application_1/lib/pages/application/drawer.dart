@@ -11,7 +11,9 @@ import 'Settings/settings.dart'; // Import the Settings page
 import "package:firebase_auth/firebase_auth.dart";
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  final String uid;
+
+  const AppDrawer({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,54 +23,22 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 2, 40, 81),
+              color: Colors.blue,
             ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontFamily: 'Roboto',
-              ),
-            ),
+            child: Text('Menu', style: TextStyle(color: Colors.white)),
           ),
           ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text(
-              'Home',
-              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
-            ),
+            title: const Text('Dashboard'),
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const DashboardWithDrawer()),
-              );
+              Navigator.pop(context); // Close the drawer before navigating
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
             },
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text(
-              'Settings',
-              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
-            ),
+            title: const Text('Meals'),
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsPage()),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.fastfood),
-            title: const Text(
-              'Meal Selection',
-              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MealPage()),
-              );
+              Navigator.pop(context); // Close the drawer before navigating
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MealPage()));
             },
           ),
           ListTile(
@@ -78,38 +48,14 @@ class AppDrawer extends StatelessWidget {
               style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
             ),
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")),
-              );
+              // Handle item 1 tap
+              FirebaseAuth.instance.signOut();
+              Navigator.pop(context); // Close the drawer
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(title: "Login to AggieBites!")));
             },
           ),
         ],
       ),
-    );
-  }
-}
-
-// Wrap the Dashboard in a Scaffold with the drawer
-class DashboardWithDrawer extends StatelessWidget {
-  const DashboardWithDrawer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Dashboard',
-          style: TextStyle(
-            fontFamily: 'Roboto',
-            color: Colors.white,
-            fontSize: 24,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 2, 40, 81), // Ensure consistent background color
-      ),
-      body: const Dashboard(), // Ensure this is your actual Dashboard widget
-      drawer: const AppDrawer(),
     );
   }
 }

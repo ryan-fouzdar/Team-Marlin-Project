@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  simple_knn: ^0.0.3  # Use the latest version
+  csv: ^5.0.0  # Package to read CSV files
 
 
   # The following adds the Cupertino Icons font to your application.
