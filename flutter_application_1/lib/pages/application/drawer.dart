@@ -31,14 +31,26 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Dashboard'),
             onTap: () {
               Navigator.pop(context); // Close the drawer before navigating
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardPage(uid: uid)));
             },
           ),
           ListTile(
             title: const Text('Meals'),
             onTap: () {
               Navigator.pop(context); // Close the drawer before navigating
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const MealPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MealPage(uid: uid)));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text(
+              'Settings',
+              style: TextStyle(fontFamily: 'Roboto', color: Colors.black),
+            ),
+            onTap: () {
+              // Navigate to settings
+              Navigator.pop(context); // Close the drawer before navigating
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(uid: uid)));
             },
           ),
           ListTile(

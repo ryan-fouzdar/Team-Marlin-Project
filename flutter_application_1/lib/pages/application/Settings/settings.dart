@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../drawer.dart'; // Ensure this import points to the correct file path
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  final String uid;
+
+  const SettingsPage({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class SettingsPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ChangeNutritionGoalsPage()),
+                MaterialPageRoute(builder: (context) => ChangeNutritionGoalsPage(uid: uid)),
               );
             },
           ),
@@ -42,7 +44,7 @@ class SettingsPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ChangePasswordPage()),
+                MaterialPageRoute(builder: (context) => ChangePasswordPage(uid: uid)),
               );
             },
           ),
@@ -55,19 +57,21 @@ class SettingsPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const DeleteAccountPage()),
+                MaterialPageRoute(builder: (context) => DeleteAccountPage(uid: uid)),
               );
             },
           ),
         ],
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(uid: uid),
     );
   }
 }
 
 class ChangeNutritionGoalsPage extends StatelessWidget {
-  const ChangeNutritionGoalsPage({Key? key}) : super(key: key);
+  final String uid;
+
+  const ChangeNutritionGoalsPage({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,13 +97,15 @@ class ChangeNutritionGoalsPage extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(uid: uid),
     );
   }
 }
 
 class ChangePasswordPage extends StatelessWidget {
-  const ChangePasswordPage({Key? key}) : super(key: key);
+  final String uid;
+
+  const ChangePasswordPage({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -125,13 +131,15 @@ class ChangePasswordPage extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(uid: uid),
     );
   }
 }
 
 class DeleteAccountPage extends StatelessWidget {
-  const DeleteAccountPage({Key? key}) : super(key: key);
+  final String uid;
+
+  const DeleteAccountPage({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +165,7 @@ class DeleteAccountPage extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(uid: uid),
     );
   }
 }
