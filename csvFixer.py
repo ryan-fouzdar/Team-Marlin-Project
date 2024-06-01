@@ -19,7 +19,7 @@ def replace_range_with_right_value(input_file, output_file):
                 new_row.append(new_cell)
             writer.writerow(new_row)
 
-input_file = 'flutter_application_1/assets/dataset/gdsc_dataset.csv'
+input_file = 'AggieBites/assets/dataset/gdsc_dataset.csv'
 output_file = 'ms_annual_data_2022_fixed.csv'
 
 replace_range_with_right_value(input_file, output_file)

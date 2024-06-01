@@ -51,7 +51,7 @@ def recommend_meals(user, meals, num_recommendations):
 curUser = User(calorieGoal=2280, proteinGoal=190, fatGoal=80, carbGoal=200, mealsEaten=0)
 numRecommendations = 3
 
-meals = load_meals("flutter_application_1/assets/dataset/gdsc_dataset.csv")
+meals = load_meals("AggieBites/assets/dataset/gdsc_dataset.csv")
 sortedMeals = recommend_meals(curUser, meals, numRecommendations)
 for meal in sortedMeals:
 	print(meal)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567431096611",
+    "project_id": "aggiebites",
+    "storage_bucket": "aggiebites.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567431096611:android:0f34fbf3d77b349d954496",
+        "android_client_info": {
+          "package_name": "com.example.AggieBites"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDds_hX7vlWEcS-fXmg8-3h9gQbANogiEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

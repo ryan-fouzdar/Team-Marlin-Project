@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the CSV file
-file_path = 'flutter_application_1/assets/dataset/gdsc_dataset.csv'  # Replace this with the path to your CSV file
+file_path = 'AggieBites/assets/dataset/gdsc_dataset.csv'  # Replace this with the path to your CSV file
 df = pd.read_csv(file_path)
 
 # Specify the column from which you want to extract unique entries
